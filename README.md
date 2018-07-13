@@ -2,7 +2,7 @@
 
 本实例基于websocket和jQuery开发。
 [websocket](https://github.com/gorilla/websocket)
-[jQuery](http://jquery.com) 
+[jQuery](http://jquery.com)
 
 本实例特点如下：
 1. 支持浏览器客户端和命令行客户端两种方式。
@@ -19,7 +19,7 @@
     $ cd server
     $ go run *.go
 
-运行命令行客户端   
+运行命令行客户端
 
     $ cd client
     $ go run *.go
@@ -29,7 +29,7 @@
 
 登陆聊天室输入：
 
-    username=niuyufu&token=123456
+    username=test&token=123456
 
 跟某人私聊输入：
 
