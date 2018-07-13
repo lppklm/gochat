@@ -24,7 +24,8 @@ const (
 
 	//对方ping周期
 	// Send pings to peer with this period. Must be less than pongWait.
-	pingPeriod = (pongWait * 9) / 10
+	//pingPeriod = (pongWait * 9) / 10
+	pingPeriod = 2 * time.Second
 
 	//对方最大写入字节数
 	// Maximum message size allowed from peer.
@@ -77,6 +78,7 @@ func (c *connection) readPump() {
 
 		mtype := 2 //用户消息
 		text := string(message)
+		//username=test&token=123456
 		reg := regexp.MustCompile(`=[^&]+`)
 		s := reg.FindAllString(text, -1)
 
@@ -124,6 +126,7 @@ func (c *connection) writePump() {
 	defer func() {
 		ticker.Stop()
 		c.ws.Close()
+		//h.unregister <- c ?这里不用将connections中的 del掉吗
 	}()
 	for {
 		select {
@@ -137,6 +140,7 @@ func (c *connection) writePump() {
 				return
 			}
 		case <-ticker.C:
+			log.Println("this is ticket.....")
 			if err := c.write(websocket.PingMessage, []byte{}); err != nil {
 				return
 			}

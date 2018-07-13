@@ -4,7 +4,9 @@
 
 package main
 
-import ()
+import (
+	"log"
+)
 
 type tmessage struct {
 	content    []byte
@@ -59,6 +61,8 @@ func (h *hub) run() {
 			}
 		//广播有数据
 		case m := <-h.broadcast:
+			log.Println("connections")
+			log.Println(len(h.connections))
 			//递归所有广播连接
 			for c := range h.connections {
 				var send_flag = false
